@@ -1,0 +1,34 @@
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+    vector<int> v;
+    for(int i=0;i<lists.size();i++)
+    {
+        ListNode* curr=lists[i];
+        while(curr)
+        {
+            v.push_back(curr->val);
+            curr=curr->next;
+        } 
+    }
+sort(v.begin(),v.end());
+ListNode *prev=NULL;
+ListNode *res=NULL;
+ListNode *temp;
+   for(int i=0;i<v.size();i++)
+   {
+       int y=v[i];
+       temp=new ListNode(y);
+       if(res==NULL)
+       {
+           res=temp;
+       }
+       else
+       {
+       prev->next=temp;
+       }
+       prev=temp;
+   }
+        return res;
+    }
+};
